@@ -155,8 +155,9 @@ const LocalesDropdown = ({
 											<span className="inline-item inline-item-before">
 												<ClayIcon symbol={icon} />
 											</span>
-
-											{displayName}
+											<span className="text-capitalize">
+                                            	{displayName}
+                                            </span>
 										</ClayLayout.ContentSection>
 									</ClayLayout.ContentCol>
 
