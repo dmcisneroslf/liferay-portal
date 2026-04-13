@@ -1575,7 +1575,7 @@ public class CompanyLocalServiceTest {
 	}
 
 	private void _testUpdateCompanyMx(
-			String mx, boolean valid, boolean mailMxUpdate)
+			String mx, boolean expectFailure, boolean mailMxUpdate)
 		throws Exception {
 
 		String originalMx = _company.getMx();
@@ -1587,14 +1587,12 @@ public class CompanyLocalServiceTest {
 				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 					_company.getCompanyId())) {
 
-			_companyLocalService.updateCompany(
+			_company = _companyLocalService.updateCompany(
 				_company.getCompanyId(), _company.getVirtualHostname(), mx,
 				_company.getMaxUsers(), _company.isActive());
 
-			_company = _companyLocalService.getCompany(_company.getCompanyId());
-
-			if (valid && mailMxUpdate) {
-				Assert.assertNotEquals(originalMx, _company.getMx());
+			if (expectFailure && mailMxUpdate) {
+				Assert.assertEquals(mx, _company.getMx());
 			}
 			else {
 				Assert.assertEquals(originalMx, _company.getMx());
@@ -1605,7 +1603,7 @@ public class CompanyLocalServiceTest {
 				_log.debug(companyMxException);
 			}
 
-			Assert.assertFalse(valid);
+			Assert.assertFalse(expectFailure);
 			Assert.assertTrue(mailMxUpdate);
 		}
 		finally {
@@ -1615,19 +1613,21 @@ public class CompanyLocalServiceTest {
 		}
 	}
 
-	private void _testUpdateCompanyNames(boolean valid) throws Exception {
+	private void _testUpdateCompanyNames(boolean expectFailure)
+		throws Exception {
+
 		String companyName = _company.getName();
 
 		try (SafeCloseable safeCloseable =
 				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
-					company.getCompanyId())) {
+					_company.getCompanyId())) {
 
 			Group group = null;
 
 			try {
 				String[] names;
 
-				if (valid) {
+				if (expectFailure) {
 					names = new String[] {RandomTestUtil.randomString()};
 				}
 				else {
@@ -1642,7 +1642,7 @@ public class CompanyLocalServiceTest {
 					};
 				}
 
-				_testUpdateCompanyNames(_company, names, !valid);
+				_testUpdateCompanyNames(_company, names, !expectFailure);
 			}
 			finally {
 				_company = _companyLocalService.updateCompany(
