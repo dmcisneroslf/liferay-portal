@@ -116,6 +116,11 @@ public class ContentEditorToolbarComponentSectionFragmentRenderer
 			layoutDisplayPageObjectProvider, objectDefinition, themeDisplay);
 
 		return hashMapWrapper.put(
+			"isNew",
+			Objects.equals(
+				Constants.ADD,
+				ParamUtil.getString(httpServletRequest, Constants.CMD))
+		).put(
 			"displayDate",
 			() -> {
 				String restoredDisplayDate =
