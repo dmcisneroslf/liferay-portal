@@ -116,11 +116,6 @@ public class ContentEditorToolbarComponentSectionFragmentRenderer
 			layoutDisplayPageObjectProvider, objectDefinition, themeDisplay);
 
 		return hashMapWrapper.put(
-			"isNew",
-			Objects.equals(
-				Constants.ADD,
-				ParamUtil.getString(httpServletRequest, Constants.CMD))
-		).put(
 			"displayDate",
 			() -> {
 				String restoredDisplayDate =
@@ -191,6 +186,11 @@ public class ContentEditorToolbarComponentSectionFragmentRenderer
 				return language.format(
 					themeDisplay.getLocale(), "edit-x", title);
 			}
+		).put(
+			"isNew",
+			Objects.equals(
+				Constants.ADD,
+				ParamUtil.getString(httpServletRequest, Constants.CMD))
 		).put(
 			"title", title
 		).put(

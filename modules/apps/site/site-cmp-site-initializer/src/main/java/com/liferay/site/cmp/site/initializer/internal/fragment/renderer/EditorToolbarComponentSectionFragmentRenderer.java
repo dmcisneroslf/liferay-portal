@@ -80,8 +80,6 @@ public class EditorToolbarComponentSectionFragmentRenderer
 		return HashMapBuilder.<String, Object>put(
 			"backURL", ParamUtil.getString(httpServletRequest, "redirect")
 		).put(
-			"isNew", (objectEntry != null) && objectEntry.isDraft()
-		).put(
 			"formSubmitURL",
 			() -> {
 				String action = ParamUtil.getString(
@@ -126,6 +124,8 @@ public class EditorToolbarComponentSectionFragmentRenderer
 
 				return null;
 			}
+		).put(
+			"isNew", (objectEntry != null) && objectEntry.isDraft()
 		).put(
 			"title",
 			() -> {
