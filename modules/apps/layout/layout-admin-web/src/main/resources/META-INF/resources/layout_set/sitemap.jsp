@@ -45,25 +45,4 @@ if (!virtualHostnames.containsKey(PortalUtil.getHost(request))) {
 		<liferay-ui:message arguments='<%= new Object[] {sitemapUrlLink, "</a>"} %>' key="send-sitemap-information-to-preview" translateArguments="<%= false %>" />
 	</p>
 
-	<ul class="list-unstyled">
-		<li>
-			<clay:link
-				href='<%= "http://www.google.com/webmasters/sitemaps/ping?sitemap=" + HtmlUtil.escapeURL(sitemapUrl) %>'
-				label="Google"
-				target="_blank"
-			/>
-		</li>
-		<li>
-			<div class="d-flex">
-				<clay:link
-					cssClass="c-mr-2"
-					href='<%= "https://siteexplorer.search.yahoo.com/submit/ping?sitemap=" + HtmlUtil.escapeURL(sitemapUrl) %>'
-					label="Yahoo!"
-					target="_blank"
-				/>
-
-				<liferay-ui:message key="requires-log-in" />
-			</div>
-		</li>
-	</ul>
 </div>
