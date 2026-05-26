@@ -44,5 +44,4 @@ if (!virtualHostnames.containsKey(PortalUtil.getHost(request))) {
 	<p>
 		<liferay-ui:message arguments='<%= new Object[] {sitemapUrlLink, "</a>"} %>' key="send-sitemap-information-to-preview" translateArguments="<%= false %>" />
 	</p>
-
 </div>
