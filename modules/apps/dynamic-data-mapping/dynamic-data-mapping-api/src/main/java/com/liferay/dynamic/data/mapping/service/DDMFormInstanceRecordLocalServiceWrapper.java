@@ -482,6 +482,16 @@ public class DDMFormInstanceRecordLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<DDMFormInstanceRecord> getFormInstanceRecords(
+		long ddmFormInstanceId, String ipAddress, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<DDMFormInstanceRecord>
+			orderByComparator) {
+
+		return _ddmFormInstanceRecordLocalService.getFormInstanceRecords(
+			ddmFormInstanceId, ipAddress, start, end, orderByComparator);
+	}
+
+	@Override
 	public int getFormInstanceRecordsCount(long ddmFormInstanceId) {
 		return _ddmFormInstanceRecordLocalService.getFormInstanceRecordsCount(
 			ddmFormInstanceId);
@@ -499,6 +509,14 @@ public class DDMFormInstanceRecordLocalServiceWrapper
 
 		return _ddmFormInstanceRecordLocalService.getFormInstanceRecordsCount(
 			ddmFormInstanceId, userId);
+	}
+
+	@Override
+	public int getFormInstanceRecordsCount(
+		long ddmFormInstanceId, String ipAddress) {
+
+		return _ddmFormInstanceRecordLocalService.getFormInstanceRecordsCount(
+			ddmFormInstanceId, ipAddress);
 	}
 
 	@Override
@@ -643,4 +661,4 @@ public class DDMFormInstanceRecordLocalServiceWrapper
 		_ddmFormInstanceRecordLocalService;
 
 }
-// LIFERAY-SERVICE-BUILDER-HASH:1303133393
+// LIFERAY-SERVICE-BUILDER-HASH:557135681

@@ -368,6 +368,11 @@ public interface DDMFormInstanceRecordLocalService
 		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<DDMFormInstanceRecord> getFormInstanceRecords(
+		long ddmFormInstanceId, String ipAddress, int start, int end,
+		OrderByComparator<DDMFormInstanceRecord> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFormInstanceRecordsCount(long ddmFormInstanceId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -375,6 +380,10 @@ public interface DDMFormInstanceRecordLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFormInstanceRecordsCount(long ddmFormInstanceId, long userId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getFormInstanceRecordsCount(
+		long ddmFormInstanceId, String ipAddress);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
@@ -452,4 +461,4 @@ public interface DDMFormInstanceRecordLocalService
 		throws E;
 
 }
-// LIFERAY-SERVICE-BUILDER-HASH:-1334577577
+// LIFERAY-SERVICE-BUILDER-HASH:327938531
