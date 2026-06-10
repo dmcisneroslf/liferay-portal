@@ -8,10 +8,8 @@ package com.liferay.dynamic.data.mapping.form.web.internal.display.context.util;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
-import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceRecordLocalService;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.module.service.Snapshot;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -20,7 +18,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -48,11 +45,16 @@ public class DDMFormGuestUploadFieldUtil {
 		DDMFormInstanceRecordLocalService ddmFormInstanceRecordLocalService =
 			_ddmFormInstanceRecordLocalServiceSnapshot.get();
 
-		int count = ddmFormInstanceRecordLocalService.getFormInstanceRecordsCount(
+		int count =
+			ddmFormInstanceRecordLocalService.getFormInstanceRecordsCount(
 				ddmFormInstance.getFormInstanceId(),
 				httpServletRequest.getRemoteAddr());
 
-		return count >= guestUploadMaximumSubmissions;
+		if (count >= guestUploadMaximumSubmissions) {
+			return true;
+		}
+
+		return false;
 	}
 
 	protected static boolean hasGuestUploadField(
