@@ -302,15 +302,6 @@ public class DDMFormInstanceRecordLocalServiceImpl
 	}
 
 	@Override
-	public List<DDMFormInstanceRecord> getFormInstanceRecords(
-		long ddmFormInstanceId, String ipAddress, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
-
-		return ddmFormInstanceRecordPersistence.findByF_I(
-			ddmFormInstanceId, ipAddress, start, end, orderByComparator);
-	}
-
-	@Override
 	public int getFormInstanceRecordsCount(long ddmFormInstanceId) {
 		return ddmFormInstanceRecordPersistence.countByFormInstanceId(
 			ddmFormInstanceId);

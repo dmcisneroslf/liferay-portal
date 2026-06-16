@@ -417,14 +417,6 @@ public class DDMFormInstanceRecordLocalServiceUtil {
 			ddmFormInstanceId, userId, start, end, orderByComparator);
 	}
 
-	public static List<DDMFormInstanceRecord> getFormInstanceRecords(
-		long ddmFormInstanceId, String ipAddress, int start, int end,
-		OrderByComparator<DDMFormInstanceRecord> orderByComparator) {
-
-		return getService().getFormInstanceRecords(
-			ddmFormInstanceId, ipAddress, start, end, orderByComparator);
-	}
-
 	public static int getFormInstanceRecordsCount(long ddmFormInstanceId) {
 		return getService().getFormInstanceRecordsCount(ddmFormInstanceId);
 	}
@@ -548,4 +540,4 @@ public class DDMFormInstanceRecordLocalServiceUtil {
 			DDMFormInstanceRecordLocalService.class);
 
 }
-// LIFERAY-SERVICE-BUILDER-HASH:829937258
+// LIFERAY-SERVICE-BUILDER-HASH:-740446410
